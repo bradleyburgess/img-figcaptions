@@ -1,0 +1,5 @@
+node_modules
+ideas.txt
+.nyc_output/
+coverage/
+package.json_

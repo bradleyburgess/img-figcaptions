@@ -1,0 +1,33 @@
+{
+  "name": "@bradleyburgess/img2figure",
+  "version": "1.0.0",
+  "description": "A module to add <figure> and <figcaption> to HTML <img>s",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradleyburgess/img2figure.git"
+  },
+  "keywords": [
+    "html",
+    "images",
+    "figure",
+    "figcaption",
+    "captions"
+  ],
+  "author": "Bradley Burgess",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bradleyburgess/img2figure/issues"
+  },
+  "homepage": "https://github.com/bradleyburgess/img2figure#readme",
+  "devDependencies": {
+    "ava": "^4.3.0",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.7.1"
+  }
+}
