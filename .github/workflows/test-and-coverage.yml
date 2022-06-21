@@ -14,10 +14,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      - name: Install deps
+        run: npm install
       - name: Run tests using jest
-        run: |
-          npm ci
-          npx nyc --reporter=lcov jest --coverage
+        run: npm test -- --coverage
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
 
