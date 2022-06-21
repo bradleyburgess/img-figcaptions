@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src __tests__",
-    "test": "nyc --reporter=lcov jest",
+    "test": "nyc --reporter=lcov jest --coverage",
     "test:watch": "jest --watch"
   },
   "repository": {
