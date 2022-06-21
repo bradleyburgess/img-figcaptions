@@ -1,5 +1,9 @@
 # `img-figcaptions`
 
+[![npm](https://img.shields.io/npm/v/@bradleyburgess/img-figcaptions?style=for-the-badge)](https://www.npmjs.com/package/eleventy-plugin-broken-links)
+![License: MIT](https://img.shields.io/github/license/bradleyburgess/img-figcaptions?color=yellow&style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/github/bradleyburgess/img-figcaptions?style=for-the-badge)
+
 ## Table of contents
 
 - [Overview](#overview)
