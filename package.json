@@ -1,18 +1,29 @@
 {
-  "name": "@bradleyburgess/img2figure",
+  "name": "@bradleyburgess/img-figcaptions",
   "version": "1.0.0",
-  "description": "A module to add <figure> and <figcaption> to HTML <img>s",
-  "main": "index.js",
+  "description": "Easily add captions to HTML images with `<figure>` and `<figcaption>`",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "lint": "eslint src __tests__",
+    "test": "nyc --reporter=lcov npm jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bradleyburgess/img2figure.git"
+    "url": "git+https://github.com/bradleyburgess/img-figcaptions.git"
   },
   "keywords": [
     "html",
     "images",
+    "image captions",
     "figure",
     "figcaption",
     "captions"
@@ -20,14 +31,23 @@
   "author": "Bradley Burgess",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bradleyburgess/img2figure/issues"
+    "url": "https://github.com/bradleyburgess/img-figcaptions/issues"
   },
-  "homepage": "https://github.com/bradleyburgess/img2figure#readme",
+  "homepage": "https://github.com/bradleyburgess/img-figcaptions#readme",
   "devDependencies": {
-    "ava": "^4.3.0",
+    "@types/jest": "^28.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.7.1"
+    "jest": "^28.1.1",
+    "nyc": "^15.1.0",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.11"
   }
 }

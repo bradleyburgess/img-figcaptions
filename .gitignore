@@ -1,5 +1,9 @@
 node_modules
-ideas.txt
+
+# reports / coverage
 .nyc_output/
 coverage/
-package.json_
+
+# build
+dist/
+tsconfig.tsbuildinfo
