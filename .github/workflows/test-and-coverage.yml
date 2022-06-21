@@ -17,7 +17,7 @@ jobs:
       - name: Run tests using jest
         run: |
           npm ci
-          npx nyc --reporter=lcov jest
+          npx nyc --reporter=lcov jest --coverage
       - name: Codecov
         uses: codecov/codecov-action@v3.1.0
 
