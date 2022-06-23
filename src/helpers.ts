@@ -111,3 +111,9 @@ export function replaceEmptyParagraphParent(el: CheerioElement): void {
     parent.replaceWith(el);
   }
 }
+
+export function getElementToWrap(el: CheerioElement): CheerioElement {
+  const parent = el.parent();
+  const parentTagName = getTagName(parent);
+  return parentTagName === "picture" ? parent : el;
+}

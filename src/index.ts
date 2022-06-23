@@ -7,6 +7,7 @@ import {
 } from "./checkers";
 import {
   deleteText,
+  getElementToWrap,
   insertCaptionAfterImage,
   removeElement,
   replaceEmptyParagraphParent,
@@ -23,6 +24,7 @@ import {
 const defaultOptions: Img2FigureOptions = {
   removeTitle: false,
   replaceEmptyParagraph: true,
+  addFigureToAllImgs: false,
 };
 
 export = function imgFigcaptions(content: string, options?: Img2FigureOptions) {
@@ -75,6 +77,12 @@ export = function imgFigcaptions(content: string, options?: Img2FigureOptions) {
       insertCaptionAfterImage(elementToWrap, captionText);
       if (options.replaceEmptyParagraph) replaceEmptyParagraphParent(elementToWrap);
       continue;
+    }
+
+    if (options.addFigureToAllImgs) {
+      const elementToWrap = getElementToWrap(img);
+      wrapElement(elementToWrap);
+      if (options.replaceEmptyParagraph) replaceEmptyParagraphParent(elementToWrap);
     }
   }
 

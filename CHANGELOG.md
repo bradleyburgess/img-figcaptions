@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.0 (06/23/2022)
+
+- Added `addFigureToAllImgs` option.
+- Added `getElementToWrap` helper, with tests.
+
+
 ## v1.0.0 (06/21/2022)
 
 First version.

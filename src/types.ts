@@ -26,4 +26,5 @@ export interface CheckResultSuccess<T> {
 export interface Img2FigureOptions {
   removeTitle?: boolean;
   replaceEmptyParagraph?: boolean;
+  addFigureToAllImgs?: boolean;
 }

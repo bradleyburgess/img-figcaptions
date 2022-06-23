@@ -1,6 +1,6 @@
 # `img-figcaptions`
 
-[![npm](https://img.shields.io/npm/v/@bradleyburgess/img-figcaptions?style=for-the-badge)](https://www.npmjs.com/package/eleventy-plugin-broken-links)
+[![npm](https://img.shields.io/npm/v/@bradleyburgess/img-figcaptions?style=for-the-badge)](https://www.npmjs.com/package/@bradleyburgess/img-figcaptions)
 ![License: MIT](https://img.shields.io/github/license/bradleyburgess/img-figcaptions?color=yellow&style=for-the-badge)
 ![Codecov](https://img.shields.io/codecov/c/github/bradleyburgess/img-figcaptions?style=for-the-badge)
 
@@ -23,7 +23,7 @@
 ## Overview
 
 Easily add user-friendly captions to HTML images with `<figure>` and
-`<figcaption>`, using user-friendly "Caption: " blocks. 
+`<figcaption>`, using user-friendly "Caption: " blocks.
 
 This module is intended to be used in a Node.js environment, e.g. in a static
 site generator pipeline or workflow. It takes an HTML string and parses
@@ -85,7 +85,7 @@ you:
 
 Markdown is possibly the most common source for content coming to a SSG, but I
 didn't want to make any assumptions about where the content was coming from, and
-therefore what shape the HTML would be.  That is why I decided to design this
+therefore what shape the HTML would be. That is why I decided to design this
 module to make transformations on raw `html`, and not make e.g. a `markdown-it`
 extension, which would limit the functionality to parsing markdown only.
 Different CMS work differently, and this allows the most flexibility.
@@ -103,27 +103,34 @@ yarn add @bradleyburgess/img-figcaptions
 ```
 
 To use in your project, import the module, and pass the function the HTML string
-you want to transform. You can optionally supply an options object, that has a
-`replaceEmptyParagraph` key and a `removeTitle` key (shown here with the
-defaults):
+you want to transform. You can optionally supply an options object, shown here
+with the defaults:
 
 ```js
 const imgFigcaptions = require("@bradleyburgess/img-figcaptions");
 const content = getHtmlContentFromSomewhere; // html string
 
-const options = { removeTitle: false, replaceEmptyParagraph: true };
+const options = { 
+  addFigureToAllImgs: true,
+  removeTitle: false,
+  replaceEmptyParagraph: true,
+};
 
 const output = imgFigcaptions(content, options); // transformed html string
 ```
 
 ### Options
 
+`addFigureToAllImgs` will wrap all images (`<picture>` if appropriate) in
+`<figure>` tags, regardless of whether there is a caption or not. **The default
+is true.**
+
 `replaceEmptyParagraph` will remove a parent `<p>` if the only child is the
-resulting `<figure>` element containing the image and caption. The default is
-**true**.
+resulting `<figure>` element containing the image and caption. **The default is
+true**.
 
 `removeTitle` set to `true` will strip the `title` attribute from an image if
-the caption comes from that attribute. The default is **false**.
+the caption comes from that attribute. **The default is false**.
 
 ## Examples of input / output
 
@@ -197,7 +204,36 @@ the caption comes from that attribute. The default is **false**.
 </figure>
 ```
 
-### Markdown examples
+### Picture tag example
+
+The module treats `<img>` and `<picture>` tags almost interchangeably. Meaning,
+if the parent of an `<img>` is a `<picture>`, the module will wrap the parent
+`<picture>` instead of the actual `<img>`. The functionality is the same for
+both, and the same options apply in terms of where the caption can be indicated.
+
+Input:
+
+```html
+<picture>
+  <source ...>
+  <img src="example.jpg" />
+</picture>
+<p>Caption: This is my caption</p>
+```
+
+Output:
+
+```html
+<figure>
+  <picture>
+    <source ...>
+    <img src="example.jpg" />
+  </picture>
+  <figcaption>This is my caption</figcaption>
+</figure>
+```
+
+### Markdown example
 
 Input:
 

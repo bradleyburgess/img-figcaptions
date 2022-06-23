@@ -119,6 +119,14 @@ const content = {
     <p>Caption: This should be transformed</p>
   </body>
 </html>`,
+
+  addFigureToAllImgs: `<html>
+  <body>
+    <p>
+      <img />
+    </p>
+  </body>
+</html>`,
 };
 
 const setup = (content: string) => cheerio.load(content);
@@ -280,5 +288,20 @@ describe("end to end", () => {
 
     const p = $("p").filter((i, el) => $(el).text() === "This paragraph should remain");
     expect(p.prev().hasClass("remain")).toBe(true);
+  });
+
+  it("adds figure to all images", () => {
+    const result = imgFigcaptions(content.addFigureToAllImgs, {
+      replaceEmptyParagraph: true,
+      addFigureToAllImgs: true,
+    });
+    const $ = cheerio.load(result);
+    const p = $("p");
+    const figure = $("body figure");
+    const img = $("body figure img");
+
+    expect(p.length).toBe(0);
+    expect(figure.length).toBe(1);
+    expect(img.length).toBe(1);
   });
 });
