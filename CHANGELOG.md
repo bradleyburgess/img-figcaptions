@@ -1,10 +1,17 @@
 # Changelog
 
+## v1.1.1 (06/24/2022)
+
+- Fixed a bug with `checkForTitle` that didn't return `picture` parent
+
+---
+
 ## v1.1.0 (06/23/2022)
 
 - Added `addFigureToAllImgs` option.
 - Added `getElementToWrap` helper, with tests.
 
+---
 
 ## v1.0.0 (06/21/2022)
 

@@ -8,19 +8,21 @@ const defaultResult: CheckerResult = {
   elementToWrap: null,
 };
 
-export function checkForTitle(el: CheerioElement): CheckerResult {
-  const result = { ...defaultResult };
+export function checkForTitle(el: CheerioElement, result?: CheckerResult): CheckerResult {
+  result = result ?? { ...defaultResult };
+  const parent = el.parent();
+  const isParentPicture = getTagName(parent) === "picture";
   const title = el.attr("title");
   if (typeof title === "string" && title !== "") {
     result.success = true;
     result.captionText = stripCaption(title);
-    result.elementToWrap = el;
+    result.elementToWrap = isParentPicture ? parent : el;
   }
   return result;
 }
 
 export function checkSiblingTextNode(el: CheerioElement, result?: CheckerResult): CheckerResult {
-  result = result || { ...defaultResult };
+  result = result ?? { ...defaultResult };
   const parent = el.parent();
   const parentTagName = parent[0].tagName;
   if (parentTagName === "picture") return checkSiblingTextNode(parent, result);
@@ -36,7 +38,7 @@ export function checkSiblingTextNode(el: CheerioElement, result?: CheckerResult)
 }
 
 export function checkSiblingElement(el: CheerioElement, result?: CheckerResult): CheckerResult {
-  result = result || { ...defaultResult };
+  result = result ?? { ...defaultResult };
   const parent = el.parent();
   if (getTagName(parent) === "picture") return checkSiblingElement(parent, result);
   if (getTagName(parent) === "a") return checkSiblingElement(parent, result);
@@ -53,7 +55,7 @@ export function checkSiblingElement(el: CheerioElement, result?: CheckerResult):
 }
 
 export function checkCousinElement(el: CheerioElement, result?: CheckerResult): CheckerResult {
-  result = result || { ...defaultResult };
+  result = result ?? { ...defaultResult };
   const parent = el.parent();
   if (getTagName(parent) === "picture") return checkCousinElement(parent, result);
   if (getTagName(parent) === "a") return checkCousinElement(parent, result);
